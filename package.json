@@ -1,0 +1,19 @@
+{
+  "name": "vue-confirm-input",
+  "version": "1.0.0",
+  "description": "Vue input component",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/orlv/vue-confirm-input.git"
+  },
+  "author": "Oleg Orlov <oleg.orlv@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/orlv/vue-confirm-input/issues"
+  },
+  "homepage": "https://github.com/orlv/vue-confirm-input#readme",
+  "devDependencies": {
+    "rlv-styles": "^1.0.0"
+  }
+}

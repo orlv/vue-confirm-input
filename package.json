@@ -1,6 +1,6 @@
 {
   "name": "vue-confirm-input",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Vue input component",
   "main": "index.js",
   "repository": {
@@ -14,6 +14,6 @@
   },
   "homepage": "https://github.com/orlv/vue-confirm-input#readme",
   "devDependencies": {
-    "rlv-styles": "^1.0.0"
+    "rlv-styles": "^1.2.2"
   }
 }

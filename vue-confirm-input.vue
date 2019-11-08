@@ -18,7 +18,7 @@
   export default {
     template: '#vue-confirm-input-template',
 
-    data: function () {
+    data () {
       return {
         busy: false,
         inputValue: ''
@@ -32,35 +32,35 @@
     },
 
     watch: {
-      value: function (value) {
+      value (value) {
         this.inputValue = value || ''
       }
     },
 
     computed: {
-      buttonText: function () {
+      buttonText () {
         return this.busy ? 'Cancel' : this.text
       },
 
-      confirmText: function () {
+      confirmText () {
         return this.confirm ? this.confirm : 'OK'
       }
     },
 
     methods: {
-      callConfirm: function () {
+      callConfirm () {
         this.busy = false
         const value = this.inputValue
         this.inputValue = ''
         this.callback(value)
       },
 
-      cancel: function () {
+      cancel () {
         this.busy = false
         this.inputValue = this.value || ''
       },
 
-      click: function () {
+      click () {
         if (this.busy) {
           this.cancel()
         } else {

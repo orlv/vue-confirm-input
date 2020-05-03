@@ -1,7 +1,7 @@
-<template id="vue-confirm-input-template">
+<template>
     <span>
         <span class="text-button p-0" :class="{'text-button-red': !busy }" @click="click">{{ buttonText }}</span>
-        <span class="vue-confirm-input-form" v-if="busy" @click="cancel">
+        <span class="container" v-if="busy" @click="cancel">
             <span @click.stop class="vue-confirm-input-main">
                 <span>{{ title }}</span>
                 <input v-model="inputValue" type="text" class="ml-1" :title="title" autofocus ref="confirmInput"
@@ -13,67 +13,62 @@
 </template>
 
 <script>
-  import 'rlv-styles/styles.css'
+import 'rlv-styles/styles.css'
 
-  export default {
-    template: '#vue-confirm-input-template',
+export default {
+  data () {
+    return {
+      busy: false,
+      inputValue: ''
+    }
+  },
 
-    data () {
-      return {
-        busy: false,
-        inputValue: ''
-      }
+  props: ['callback', 'text', 'title', 'confirm', 'value'],
+
+  watch: {
+    value (value) {
+      this.inputValue = value || ''
+    }
+  },
+
+  computed: {
+    buttonText () {
+      return this.busy ? 'Cancel' : this.text
     },
 
-    props: ['callback', 'text', 'title', 'confirm', 'value'],
+    confirmText () {
+      return this.confirm ? this.confirm : 'OK'
+    }
+  },
 
-    created () {
+  methods: {
+    callConfirm () {
+      this.busy = false
+      const value = this.inputValue
+      this.inputValue = ''
+      this.callback(value)
+    },
+
+    cancel () {
+      this.busy = false
       this.inputValue = this.value || ''
     },
 
-    watch: {
-      value (value) {
-        this.inputValue = value || ''
-      }
-    },
-
-    computed: {
-      buttonText () {
-        return this.busy ? 'Cancel' : this.text
-      },
-
-      confirmText () {
-        return this.confirm ? this.confirm : 'OK'
-      }
-    },
-
-    methods: {
-      callConfirm () {
-        this.busy = false
-        const value = this.inputValue
-        this.inputValue = ''
-        this.callback(value)
-      },
-
-      cancel () {
-        this.busy = false
+    click () {
+      if (this.busy) {
+        this.cancel()
+      } else {
+        this.busy = true
         this.inputValue = this.value || ''
-      },
-
-      click () {
-        if (this.busy) {
-          this.cancel()
-        } else {
-          this.busy = true
-          this.$nextTick(() => this.$refs.confirmInput.focus())
-        }
+        this.$nextTick(() => this.$refs.confirmInput.focus())
       }
     }
   }
+}
 </script>
 
-<style>
-    .vue-confirm-input-form {
+<style scoped>
+    .container {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -85,7 +80,7 @@
         background: rgba(249, 249, 249, 0.89);
     }
 
-    .vue-confirm-input-main {
+    .container > span {
         background-color: #ffffff;
         padding: 1em;
         border-radius: 0.3em;

@@ -14,6 +14,6 @@
   },
   "homepage": "https://github.com/orlv/vue-confirm-input#readme",
   "devDependencies": {
-    "rlv-styles": "^1.2.2"
+    "rlv-styles": "^1.2.3"
   }
 }
